@@ -1,0 +1,116 @@
+﻿@model SV20T1080053.Web.Models.PaginationSearchEmployee
+@{
+    Layout = null;
+}
+
+<!-- danh sách nhân viên-->
+
+<p style="padding: 10px 0 10px 5px">
+    Có <strong>@string.Format("{0,-10:N0}", Model.RowCount)</strong> nhân viên.
+    Hiện đang ở trang số <strong>@string.Format("{0,-10:N0}", Model.Page)</strong> trên tổng số <strong>@string.Format("{0,-10:N0}", Model.PageCount)</strong> trang.
+</p>
+
+@if (!string.IsNullOrEmpty(ViewBag.ErrorMessage))
+{
+    <div class="alert alert-warning">
+        <p>@ViewBag.ErrorMessage</p>
+    </div>
+}
+
+<div class="row">
+    @foreach (var item in Model.Data)
+    {
+        <div class="col-md-4">
+            <!-- Profile Image -->
+            <div class="box box-info">
+                <div class="box-body box-profile ">
+                    <div class="container-fluid">
+                        <div class="row table" style="border-bottom:1px dotted #888888">
+                            <div class="col-sm-8"><p>@item.FullName</p></div>
+                            <div class="col-sm-4">
+                                <div class="text-right">
+                                    <a href="~/Admin/Employee/Edit/@item.EmployeeID" class="btn btn-xs btn-info">
+                                        <i class="fa fa-edit"></i>
+                                    </a>
+
+                                    <a href="~/Admin/Employee/ChangePass/@item.EmployeeID" class="btn btn-xs btn-warning">
+                                        <i class="fa fa-key"></i>
+                                    </a>
+
+                                    <a href="~/Admin/Employee/Delete/@item.EmployeeID" class="btn btn-xs btn-danger">
+                                        <i class="fa fa-remove"></i>
+                                    </a>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="col-sm-4">
+                                <img class="profile-user-img img-responsive" src="~/Images/Employees/@item.Photo" alt="User profile picture">
+                            </div>
+                            <div class="col-sm-8">
+                                <div class="" style="border-bottom:1px dotted #888888">
+                                    <p><i class="fa fa-birthday-cake"></i> @item.BirthDate.ToString("dd/MM/yyyy")</p>
+                                </div>
+                                <div class="" style="border-bottom:1px dotted #888888">
+                                    <p><i class="fa fa-phone"></i> @item.Phone</p>
+                                </div>
+                                <div class="" style="border-bottom:1px dotted #888888">
+                                    <p><i class="fa fa-envelope"></i> <br>@item.Email</p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    }
+</div>
+<!--Phân trang-->
+<div class="text-center">
+    <ul class="pagination">
+        @if (Model.Page > 1)
+        {
+            <li>
+                <a href="javascript:;" onclick="doSearch(@(Model.Page - 1), '@Model.SearchValue')">
+                    <i class="fa fa-angle-left"></i>
+                </a>
+            </li>
+        }
+
+        @if (Model.Page > 5)
+        {
+            <li><a href="javascript:;" onclick="doSearch(1, '@Model.SearchValue')">1</a></li>
+            <li><a href="javascript:;">...</a></li>
+        }
+
+        @for (int i = Model.Page - 4; i <= Model.Page + 4 && i <= Model.PageCount; i++)
+        {
+            if (i > 0)
+            {
+                if (i == Model.Page)
+                {
+                    <li class="active"><a href="javascript:;">@i</a></li>
+                }
+                else
+                {
+                    <li><a href="javascript:;" onclick="doSearch(@i, '@Model.SearchValue')">@i</a></li>
+                }
+            }
+        }
+
+        @if (Model.Page < Model.PageCount - 4)
+        {
+            <li><a href="javascript:;">...</a></li>
+            <li><a href="javascript:;" onclick="doSearch(@Model.PageCount, '@Model.SearchValue')">@Model.PageCount</a></li>
+        }
+
+        @if (Model.Page < Model.PageCount)
+        {
+            <li>
+                <a href="javascript:;" onclick="doSearch(@(Model.Page + 1), '@Model.SearchValue')">
+                    <i class="fa fa-angle-right"></i>
+                </a>
+            </li>
+        }
+    </ul>
+</div>

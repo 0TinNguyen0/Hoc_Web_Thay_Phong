@@ -1,0 +1,39 @@
+﻿@model SV20T1080053.DomainModels.Customer
+@{
+    ViewBag.Title = "Đổi mật khẩu khách hàng";
+}
+
+<div class="box box-warning">
+    <div class="box box-body">
+        <form action="/action_page.php">
+
+            <div class="form-group">
+                <label>Họ tên khách hàng:</label>
+                <p class="form-control-static" style="border-bottom:1px dotted #888888 ">Hồ Thị Tâm</p>
+            </div>
+           <!--
+            <div class="form-group">
+                <label>Nhập mật khẩu cũ:</label>
+                <input type="text" class="form-control">
+            </div>
+            -->
+            <div class="form-group">
+                <label>Nhập mật khẩu mới:</label>
+                <input type="text" class="form-control">
+            </div>
+            
+            <div class="form-group">
+                <label>Nhập lại mật khẩu mới:</label>
+                <input type="text" class="form-control">
+            </div>
+
+            <button type="submit" class="btn btn-warning">
+                <i class="fa fa-floppy-o"></i>
+                Xác nhận đổi mật khẩu
+            </button>
+            <a href="~/Admin/Customer" class="btn btn-default">Quay lại</a>
+
+        </form>
+    </div>
+</div>
+

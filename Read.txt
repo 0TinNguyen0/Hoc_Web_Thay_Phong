@@ -1,0 +1,50 @@
+Actor:  Employee
+	Customer
+	
+
+https://myshop.com		=> Customer
+https://myshop.com/admin 	=> Employee
+
+tạo Area cho Admin
+
+Admin
+	Views
+		Shared
+			_Layout (layout luôn luôn có dấu gạch ngang đầu) 
+				* (trong file layout bắt buộc phải có @RenderBody)
+
+===================================================================
+Việc phải làm: 
+
+Trang Chủ
+Quản lý dữ liệu
+	Nhà cung cấp
+	Loại hàng
+	Khách hàng
+	Người giao hàng
+	Nhân viên
+	Mặt hàng
+Quản lý bán hàng
+	Xử lý đơn hàng
+	Lập đơn hàng
+
+=====================================================================================
+
+các phương pháp để truyền dữ liệu từ Action sang View
+Có 3 cách:
+- Sử dụng ViewData (Dictionary là một List of cloment/items)
++ trong 1 phần tử gồm: key/value(object)
++ x["key"] = value
++ lấy trị: value=x["key"]
+- Sử dụng ViewBag
+- Sử dụng Binding Model (Strong typed data)
+
+
+=======================================================================================
+(tạo SV20T1080053.BusinessLayers
+tạo SV20T1080053.DataLayers
+tạo SV20T1080053.DomainModels) vào thư mục Libraries
+
+
+bổ sung _BaseDAL vào thư mục SQLServer
+bổ sung CommonDataService vào BusinessLayers

@@ -1,0 +1,49 @@
+﻿@model SV20T1080053.DomainModels.Employee
+@{
+    ViewBag.Title = "Đổi mật khẩu nhân viên";
+}
+
+<div class="box box-warning">
+    <div class="box box-body">
+        <form class="form-horizontal" action="/action_page.php">
+            <div class="form-group">
+                <label class="control-label col-sm-2">Họ và tên:</label>
+                <div class="col-sm-10">
+                    <input type="text" class="form-control" value="Nguyễn Thị Thanh Ngân" disabled>
+                </div>
+            </div>
+
+            <div class="form-group">
+                <label class="control-label col-sm-2">Email:</label>
+                <div class="col-sm-10">
+                    <input type="text" class="form-control" value="ngannguyen@gmail.com" disabled>
+                </div>
+            </div>
+
+            <div class="form-group">
+                <label class="control-label col-sm-2">Mật khẩu:</label>
+                <div class="col-sm-10">
+                    <input type="text" class="form-control" placeholder="">
+                </div>
+            </div>
+
+            <div class="form-group">
+                <label class="control-label col-sm-2">Nhập lại mật khẩu:</label>
+                <div class="col-sm-10">
+                    <input type="text" class="form-control" placeholder="">
+                </div>
+            </div>
+
+            <div class="form-group">
+                <div class="col-sm-offset-2 col-sm-10">
+                    <button type="submit" class="btn btn-warning">
+                        <i class="fa fa-floppy-o"></i>
+                        Đổi mật khẩu nhân viên
+                    </button>
+                    <a href="~/Admin/Employee" class="btn btn-default">Quay lại</a>
+                </div>
+            </div>
+        </form>
+    </div>
+</div>
+

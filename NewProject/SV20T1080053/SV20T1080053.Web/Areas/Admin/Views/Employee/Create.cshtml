@@ -1,0 +1,103 @@
+﻿@model SV20T1080053.DomainModels.Employee
+@{
+
+}
+
+<div class="box box-primary">
+    <div class="box box-body">
+        @if (!string.IsNullOrEmpty(ViewBag.ErrorMessage))
+        {
+            <div class="alert alert-warning">
+                <p>@ViewBag.ErrorMessage</p>
+            </div>
+        }
+        <form class="form-horizontal" action="~/Admin/Employee/Save" method="post" enctype="multipart/form-data">
+            <div class="form-group">
+                <input type="hidden" name="EmployeeID" value="@Model.EmployeeID" />
+                <label class="control-label col-sm-2">Họ và tên:</label>
+                <div class="col-sm-10">
+                    @Html.TextBoxFor(m => m.FullName, new { @class="form-control", @autofocus ="autofocus"})
+                    @Html.ValidationMessageFor(m => m.FullName,"", new {@style="color:#F00"})
+                </div>
+            </div>
+            <div class="form-group">
+                <label class="control-label col-sm-2">Ngày sinh:</label>
+                <div class="col-sm-10">
+                    @Html.TextBoxFor(m => m.BirthDate, "{0:MM/dd/yyyy}", new { @class="form-control", @autofocus ="autofocus"})
+                    @Html.ValidationMessageFor(m => m.BirthDate,"", new {@style="color:#F00"})
+                </div>
+            </div>
+            <div class="form-group">
+                <label class="control-label col-sm-2">Địa chỉ:</label>
+                <div class="col-sm-10">
+                    @Html.TextBoxFor(m => m.Address, new { @class="form-control", @autofocus ="autofocus"})
+                    @Html.ValidationMessageFor(m => m.Address,"", new {@style="color:#F00"})
+                </div>
+            </div>
+            <div class="form-group">
+                <label class="control-label col-sm-2">Điện thoại:</label>
+                <div class="col-sm-10">
+                    @Html.TextBoxFor(m => m.Phone, new { @class="form-control", @autofocus ="autofocus"})
+                    @Html.ValidationMessageFor(m => m.Phone,"", new {@style="color:#F00"})
+                </div>
+            </div>
+            <div class="form-group">
+                <label class="control-label col-sm-2">Email:</label>
+                <div class="col-sm-10">
+                    @Html.TextBoxFor(m => m.Email, new { @class="form-control", @autofocus ="autofocus"})
+                    @Html.ValidationMessageFor(m => m.Email,"", new {@style="color:#F00"})
+                </div>
+            </div>
+
+            <div class="form-group">
+                <div class="col-sm-offset-2 col-sm-10">
+                    <div class="checkbox">           
+                        <label><input type="checkbox" name="IsWorking" @(Model.IsWorking ? "checked" : "") value="@(Model.IsWorking = true)"> Nhân viên đang làm việc</label>                
+                    </div>
+                </div>
+            </div>
+
+            <div class="form-group">
+                <label class="control-label col-sm-2">Ảnh cá nhân:</label>
+                <div class="col-sm-10">
+                    @Html.ValidationMessageFor(m => m.Photo,"", new {@style="color:#F00"})
+                    <input type="file" class="form-control" placeholder="" name="photo"
+                           onchange="document.querySelector('.profile-user-img').src = window.URL.createObjectURL(this.files[0]);">
+                </div>
+            </div>
+            
+            <div class="form-group">
+                <div class="col-sm-offset-2 col-sm-1">
+                    @{
+                        if (Model.EmployeeID == 0)
+                        {
+                            <img class="profile-user-img"
+                                 style="width:200px"
+                                 src="~/Images/user.jpg"
+                            alt="User profile picture">
+                        } else
+                        {
+                            <img class="profile-user-img"
+                                 style="width:200px"
+                                 src="~/Images/Employees/@Model.Photo"
+                                 alt="User profile picture">
+                        }
+                    }
+                   
+                </div>
+            </div>
+
+            <div class="form-group">
+                <div class="col-sm-offset-2 col-sm-10">
+                    <button type="submit" class="btn btn-primary">
+                        <i class="fa fa-floppy-o"></i>
+                        Lưu dữ liệu
+                    </button>
+                    <a href="~/Admin/Employee" class="btn btn-default">Quay lại</a>
+                </div>
+            </div>
+        </form>
+    </div>
+</div>
+
+
